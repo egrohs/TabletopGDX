@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.stereotype.Component;
 
 import com.badlogic.gdx.utils.Array;
 
 import ttgdx.Player;
+import ttgdx.model.GameState;
 
-@Component
+//@Component
 // TurnManager.java - Gerenciador de turnos com suporte a múltiplas estratégias
-public class TurnManager {
+public abstract class TurnManager {
     private Array<Player> players;
     private TurnStrategy turnStrategy;
     private int turnCount;
@@ -23,6 +23,11 @@ public class TurnManager {
         this.listeners = new ArrayList<>();
         this.turnCount = 0;
     }
+
+    public abstract boolean validateMove(GameState state);
+    public abstract void turnOrder(GameState state);
+    public abstract void cleanUp(GameState state);
+    public abstract boolean triggerEndGame(GameState state);
     
     public void initialize(Array<Player> players, TurnStrategyType strategyType) {
         initialize(players, strategyType, null);
@@ -52,7 +57,7 @@ public class TurnManager {
         this.turnStrategy.initialize(players);
         
         for (TurnListener listener : listeners) {
-            listener.onTurnStrategyChanged(strategy.getType());
+            //listener.onTurnStrategyChanged(strategy.getType());
         }
     }
     
@@ -81,9 +86,9 @@ public class TurnManager {
         return turnStrategy.getTurnOrder();
     }
     
-    public TurnStrategyType getTurnStrategyType() {
-        return turnStrategy.getType();
-    }
+    // public TurnStrategyType getTurnStrategyType() {
+    //     return turnStrategy.getType();
+    // }
     
     public void addTurnListener(TurnListener listener) {
         listeners.add(listener);
@@ -103,7 +108,7 @@ public class TurnManager {
     public TurnState saveState() {
         TurnState state = new TurnState();
         state.turnCount = turnCount;
-        state.strategyType = turnStrategy.getType();
+        //state.strategyType = turnStrategy.getType();
         // Salvar outros estados necessários conforme a estratégia
         return state;
     }

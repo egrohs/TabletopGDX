@@ -30,8 +30,11 @@ dependencies {
 
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
-//TODO ideal é não ter dependência direta do libgdx, mas sim via o projeto app
+//TODO ideal é não ter dependência direta do libgdx. Mas senao da erro de não achar o gdx.Game
     implementation 'com.badlogicgames.gdx:gdx:1.12.1'
+
+//implementation("org.slf4j:slf4j-api:2.0.17")
+
     // This dependency is used by the application.
     //implementation libs.guava
 
@@ -49,7 +52,7 @@ java {
 
 //application {
     // Define the main class for the application.
-//    mainClass = 'asd.App'
+//    mainClass = 'aplicacao.Escova'
 //}
 
 tasks.named('test') {

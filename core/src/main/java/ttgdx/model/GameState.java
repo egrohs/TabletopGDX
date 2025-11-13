@@ -1,4 +1,4 @@
-package ttgdx.rules;
+package ttgdx.model;
 
 import java.util.HashMap;
 import java.util.Map;

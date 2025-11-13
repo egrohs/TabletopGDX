@@ -3,6 +3,7 @@ package ttgdx.rules.turn;
 import com.badlogic.gdx.utils.Array;
 
 import ttgdx.Player;
+import ttgdx.model.GameState;
 
 // StandardTurnStrategy.java - Sequência padrão de turnos
 public class StandardTurnStrategy implements TurnStrategy {
@@ -29,9 +30,27 @@ public class StandardTurnStrategy implements TurnStrategy {
     public Array<Player> getTurnOrder() {
         return players;
     }
-    
+
     @Override
-    public TurnStrategyType getType() {
-        return TurnStrategyType.STANDARD;
+    public boolean validateMove(GameState state) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'validateMove'");
     }
+
+    @Override
+    public void cleanUp() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'cleanUp'");
+    }
+
+    @Override
+    public boolean endGameTrigger() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'endGameTrigger'");
+    }
+    
+    // @Override
+    // public TurnStrategyType getType() {
+    //     return TurnStrategyType.STANDARD;
+    // }
 }

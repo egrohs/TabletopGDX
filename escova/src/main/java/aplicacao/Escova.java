@@ -1,14 +1,18 @@
 package aplicacao;
 
 import ttgdx.TabletopGDX;
+import ttgdx.rules.EndGameManager;
+import ttgdx.rules.SetupManager;
+import ttgdx.rules.turn.TurnManager;
 
 public class Escova extends TabletopGDX {
-    public Escova() {
-        super();
-        inicializarJogo();
+    public static void main(String[] args) {
+        // Métodos do framework podem ser chamados conforme necessário
+        new Escova();
     }
 
-    private void inicializarJogo() {
+    public Escova() {
+        super();
         // Use os métodos do BoardGameFramework para configurar o jogo
         // Exemplo:
         //this.board = BoardFactory.createBoard(boardConfig);
@@ -16,10 +20,18 @@ public class Escova extends TabletopGDX {
         // ...outros setups...
     }
 
-    public static void main(String[] args) {
-        // O usuário implementa uma subclasse concreta de Escova e instancia aqui
-        //Escova jogo = new Escova();
-        // Métodos do framework podem ser chamados conforme necessário
-        new Escova();
+    @Override
+    protected SetupManager defineSetupManager() {
+        return new MySetupManager();
+    }
+
+    @Override
+    protected TurnManager defineTurnManager() {
+        return new MyTurnManager();
+    }
+
+    @Override
+    protected EndGameManager defineEndGameManager() {
+        return new MyEndGameManager();
     }
 }

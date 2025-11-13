@@ -3,6 +3,7 @@ package ttgdx.rules.turn;
 import com.badlogic.gdx.utils.Array;
 
 import ttgdx.Player;
+import ttgdx.model.GameState;
 
 // TurnStrategy.java - Interface para estratégias de ordenação de turnos
 public interface TurnStrategy {
@@ -29,5 +30,10 @@ public interface TurnStrategy {
     /**
      * Retorna o tipo da estratégia
      */
-    TurnStrategyType getType();
+    //TurnStrategyType getType();
+
+    
+    boolean validateMove(/*PieceMoveEvent event,*/ GameState state);
+    void cleanUp();
+    boolean endGameTrigger();
 }

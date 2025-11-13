@@ -3,8 +3,6 @@ package ttgdx.libgdx;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.math.Vector2;
 
@@ -20,7 +18,7 @@ public class BoardInputHandler extends InputAdapter {
     private Board board;
     private Piece selectedPiece;
     private List<Tile> validMoveTiles;
-    @Autowired
+    //@Autowired
     private TurnManager turnManager;
     
     public BoardInputHandler(Board board) {

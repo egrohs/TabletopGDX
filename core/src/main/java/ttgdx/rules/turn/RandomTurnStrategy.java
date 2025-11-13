@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 
 import ttgdx.Player;
+import ttgdx.model.GameState;
 
 // RandomTurnStrategy.java - Ordem aleatória de turnos
 public class RandomTurnStrategy implements TurnStrategy {
@@ -46,9 +47,27 @@ public class RandomTurnStrategy implements TurnStrategy {
     public Array<Player> getTurnOrder() {
         return players;
     }
-    
+
     @Override
-    public TurnStrategyType getType() {
-        return TurnStrategyType.RANDOM;
+    public boolean validateMove(GameState state) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'validateMove'");
     }
+
+    @Override
+    public void cleanUp() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'cleanUp'");
+    }
+
+    @Override
+    public boolean endGameTrigger() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'endGameTrigger'");
+    }
+    
+    // @Override
+    // public TurnStrategyType getType() {
+    //     return TurnStrategyType.RANDOM;
+    // }
 }

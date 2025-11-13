@@ -8,13 +8,14 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     //id 'application'
-    id 'java'
+    //id 'java'
+    id 'java-library'
     id("io.freefair.lombok") version "8.14.2"
-    id 'org.springframework.boot' version '3.5.5'
-    id 'io.spring.dependency-management' version '1.1.7'
+    //id 'org.springframework.boot' version '3.5.5'
+    //id 'io.spring.dependency-management' version '1.1.7'
 }
 
-group = 'cgf'
+group = 'ttgdx'
 version = '0.0.1-SNAPSHOT'
 description = 'Framework for Tabletop Games using Java and LibGDX.'
 
@@ -30,14 +31,15 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
     // This dependency is used by the application.
+    //implementation("org.slf4j:slf4j-api:2.0.17")
     //implementation libs.guava
     implementation "com.badlogicgames.gdx:gdx-backend-lwjgl3:1.12.1"
     implementation "com.badlogicgames.gdx:gdx-platform:1.12.1:natives-desktop"
     implementation 'com.badlogicgames.gdx:gdx:1.12.1'
 
     implementation("org.springframework.boot:spring-boot-starter-web:3.5.5")
-    implementation 'org.springframework.boot:spring-boot-starter-websocket'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter-websocket:3.5.5'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:3.5.5'
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
