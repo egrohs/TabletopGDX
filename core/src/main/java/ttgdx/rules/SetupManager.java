@@ -3,6 +3,7 @@ package ttgdx.rules;
 import java.util.List;
 
 import lombok.extern.slf4j.Slf4j;
+import ttgdx.creators.GameScene;
 import ttgdx.libgdx.components.Zone;
 import ttgdx.model.GameState;
 
@@ -13,7 +14,7 @@ public abstract class SetupManager {
     }
     
     // Implementar configuração inicial do jogo
-    public abstract void setup(GameState state);
+    public abstract GameScene setup(GameState state);
 
-    public abstract List<Zone> defineZones();
+    //public abstract List<Zone> defineZones();
 }

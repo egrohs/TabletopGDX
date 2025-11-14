@@ -23,7 +23,7 @@ public class Card {
     private boolean faceUp;
     Image image;
     //TODO dave aceitar caminho relativo na pasta assets
-    Texture cardTexture = new Texture(Gdx.files.internal("C:\\Users\\Pc\\workspace\\TabletopGDX\\assets\\cards\\back.gif"));
+    Texture cardTexture = new Texture(Gdx.files.internal("cards/back.gif"));
 
     public Card(Suit suit, Rank rank) {
         //super(cardTexture);

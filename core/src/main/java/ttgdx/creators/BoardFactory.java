@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Map;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -48,6 +49,11 @@ public class BoardFactory {
 
                 } else {
                     // Se não for uma zona, é um ator raiz (como um saco de peças, etc.)
+                    // ATRIBUI UMA TEXTURA PARA QUE SEJA VISÍVEL
+                    // TODO: Carregar a textura correta baseada nos dados do DTO (CustomImage, etc.)
+                    actor.setVisual(new Texture(Gdx.files.internal("badlogic.jpg"))); // TODO remover Placeholder
+                    actor.setScaleX(actor.getScaleX()/10);
+                    actor.setScaleY(actor.getScaleY()/10);
                     scene.getRootActors().add(actor);
                 }
             }

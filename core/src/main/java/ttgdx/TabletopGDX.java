@@ -6,14 +6,13 @@ import java.util.List;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
-import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
-import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
+import ttgdx.creators.GameScene;
 import ttgdx.controlers.GameEventBus;
 import ttgdx.controlers.NetworkManager;
 import ttgdx.controlers.PlayerManager;
@@ -47,34 +46,11 @@ public abstract class TabletopGDX extends Game {
 
     protected TabletopGDX() {
         super();
-        Lwjgl3ApplicationConfiguration configuration = getDefaultConfiguration();
-        Lwjgl3Application l = new Lwjgl3Application(this, getDefaultConfiguration());
-        setupManager = defineSetupManager();
-        setupManager.setup(gameState);
-        turnManager = defineTurnManager();
-        turnManager.validateMove(gameState);
-        turnManager.turnOrder(gameState);
-        turnManager.cleanUp(gameState);
-        turnManager.triggerEndGame(gameState);
-        endGameManager = defineEndGameManager();
-        endGameManager.scoring(gameState);
-        endGameManager.tiebreaker(gameState);
     }
 
     protected abstract EndGameManager defineEndGameManager();
     protected abstract TurnManager defineTurnManager();
     protected abstract SetupManager defineSetupManager();
-
-    private static Lwjgl3ApplicationConfiguration getDefaultConfiguration() {
-        Lwjgl3ApplicationConfiguration configuration = new Lwjgl3ApplicationConfiguration();
-        configuration.setTitle("Drop");
-        configuration.useVsync(true);
-        configuration.setForegroundFPS(Lwjgl3ApplicationConfiguration.getDisplayMode().refreshRate + 1);
-        configuration.setWindowedMode(800, 500); // this line changes the size of the window
-        // configuration.setWindowIcon("libgdx128.png", "libgdx64.png", "libgdx32.png",
-        // "libgdx16.png");
-        return configuration;
-    }
 
     private void layoutCards() {
         float startX = 50;
@@ -104,6 +80,22 @@ List<CardActor> deck;
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
 
+        // --- LÓGICA DE INICIALIZAÇÃO MOVIDA PARA CÁ ---
+        // O gameState deve ser inicializado aqui
+        this.gameState = new GameState(); // Ou carregado de algum lugar
+
+        setupManager = defineSetupManager();
+        GameScene scene = setupManager.setup(gameState);
+        // Adiciona todos os atores da cena (zonas, peças, etc.) ao palco para serem renderizados.
+        scene.addAllToStage(stage);
+
+        turnManager = defineTurnManager();
+        // As chamadas abaixo provavelmente devem ocorrer em outros pontos do fluxo do jogo, não todas na inicialização
+        // turnManager.validateMove(gameState);
+        // turnManager.turnOrder(gameState);
+
+        endGameManager = defineEndGameManager();
+        // --- FIM DA LÓGICA MOVIDA ---
 
 // CardFactory cardFactory = new CardFactory();
 // deck = cardFactory.createDeck();
@@ -111,8 +103,8 @@ List<CardActor> deck;
 // Collections.shuffle(deck);
 // // Posicionar cartas na tela
 // layoutCards();
-Card c = new Card(Suit.CLUBS, Card.Rank.ACE);
-stage.addActor(c.getImage());
+//Card c = new Card(Suit.CLUBS, Card.Rank.ACE);
+//stage.addActor(c.getImage());
 
         // Inicializar gerenciadores
         ruleManager = new RuleManager();

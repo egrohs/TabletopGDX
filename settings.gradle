@@ -12,5 +12,4 @@ plugins {
 
 rootProject.name = 'TabletopGDX'
 include('core')
-include('escova')
 include('five-tribes')
