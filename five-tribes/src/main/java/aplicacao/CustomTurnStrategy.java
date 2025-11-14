@@ -3,8 +3,8 @@ package aplicacao;
 import com.badlogic.gdx.utils.Array;
 
 import ttgdx.Player;
+import ttgdx.model.GameState;
 import ttgdx.rules.turn.TurnStrategy;
-import ttgdx.rules.turn.TurnStrategyType;
 
 // Exemplo de estratégia personalizada
 public class CustomTurnStrategy implements TurnStrategy {
@@ -32,8 +32,26 @@ public class CustomTurnStrategy implements TurnStrategy {
         return null;
     }
     
+    // @Override
+    // public TurnStrategyType getType() {
+    //     return TurnStrategyType.CUSTOM;
+    // }
+
     @Override
-    public TurnStrategyType getType() {
-        return TurnStrategyType.CUSTOM;
+    public boolean validateMove(GameState state) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'validateMove'");
+    }
+
+    @Override
+    public void cleanUp() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'cleanUp'");
+    }
+
+    @Override
+    public boolean endGameTrigger() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'endGameTrigger'");
     }
 }
